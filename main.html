@@ -6,6 +6,7 @@
     <title>55 Glorious Wheel Spinner</title>
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" href="icoimg.ico" type="image/png" sizes="32x32">
     <style>
         * {
             padding: 0;
@@ -15,7 +16,8 @@
         }
 
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            /* background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); */
+            background: linear-gradient(135deg, #cf2626 0%, #FFD700 50%, #FFA500 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -394,7 +396,7 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            z-index: 999;
+            z-index: 9999;
             animation: fall linear forwards;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
@@ -555,7 +557,7 @@ let remaining = {
 
 let totalSpins = 0;
 let physicalWon = 0;
-let estimatedTotal = 220;
+let estimatedTotal = 200;
 
 let pieColors = [
   "#FF5733", "#33FF57", "#3357FF", "#FF33A1",
@@ -618,22 +620,24 @@ function setupWheel() {
     },
     options: {
       responsive: true,
-      rotation: -90, // start at top
+      rotation: -90,
       animation: { duration: 0 },
       plugins: {
-            legend: { display: false },
-            datalabels: {
-            color: "#fff",
-            formatter: (_, ctx) => currentPrizes[ctx.dataIndex],
-            font: { weight: "bold", size: 12 },
-            textStrokeColor: '#000',
-            textStrokeWidth: 1,
-            rotation: (context) => {
-                // Example: rotate labels so they match the pie segment angle
-                const anglePerSegment = 60 / currentPrizes;
-                    return (anglePerSegment * context.dataIndex) + 90; 
-            }
-            
+        tooltip: {
+          enabled: false
+        },
+        legend: { display: false },
+        datalabels: {
+          color: "#fff",
+          formatter: (_, ctx) => currentPrizes[ctx.dataIndex],
+          font: { weight: "bold", size: 12 },
+          textStrokeColor: '#000',
+          textStrokeWidth: 1,
+          rotation: (context) => {
+            // Rotate labels to match the pie segment angle
+            const anglePerSegment = 360 / currentPrizes.length;
+            return (anglePerSegment * context.dataIndex) + 380;
+          }
         }
       }
     }
@@ -684,11 +688,16 @@ function selectPrizeAndGetTarget() {
 }
 
 function launchConfetti() {
-  document.querySelectorAll(".confetti").forEach(el => el.remove()); // clear old
+
+  // Clear old confetti
+  document.querySelectorAll(".confetti").forEach(el => el.remove());
+
+  // Generate new confetti
   for (let i = 0; i < 150; i++) {
     let c = document.createElement("div");
     c.className = "confetti";
     c.style.left = Math.random() * window.innerWidth + "px";
+    c.style.top = 100 - Math.random() * 50 + "px"; // spawn 50-100px from top
     c.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
     c.style.animationDuration = (2 + Math.random() * 3) + "s";
     c.style.animationDelay = Math.random() * 0.5 + "s";
@@ -705,12 +714,25 @@ function showResultModal(prize, type) {
     modal.style.display = "flex";
     
     if (type === "physical") {
+
+        const sound = new Audio("yay_soundtrack.mp3");
+        sound.play();
+
         launchConfetti();
+    }else{
+        const sound = new Audio("failed_soundtrack.mp3");
+        sound.play();
     }
 }
 
 function closeModal() {
+    // Hide the modal
     document.getElementById("resultModal").style.display = "none";
+
+    // Reset the final value content
+    document.getElementById("final-value").innerHTML = `
+        <p>🎲 Click the SPIN button to start 55 Glorious!</p>
+    `;
 }
 
 spinBtn.addEventListener("click", () => {
@@ -764,6 +786,7 @@ document.getElementById("resultModal").addEventListener("click", function(e) {
     if (e.target === this) {
         closeModal();
     }
+    
 });
 </script>
 </body>
