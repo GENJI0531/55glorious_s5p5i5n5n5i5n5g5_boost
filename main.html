@@ -21,7 +21,11 @@
         }
 
         body {
+            /* iOS Fix: Use fallback colors and proper syntax */
+            background: #cf2626; /* Fallback */
             background: -webkit-linear-gradient(135deg, #cf2626 0%, #FFD700 50%, #FFA500 100%);
+            background: -moz-linear-gradient(135deg, #cf2626 0%, #FFD700 50%, #FFA500 100%);
+            background: -o-linear-gradient(135deg, #cf2626 0%, #FFD700 50%, #FFA500 100%);
             background: linear-gradient(135deg, #cf2626 0%, #FFD700 50%, #FFA500 100%);
             min-height: 100vh;
             display: flex;
@@ -32,7 +36,7 @@
             overflow-x: hidden;
         }
 
-        /* Animated background elements */
+        /* Animated background elements - iOS Fix */
         body::before {
             content: '';
             position: fixed;
@@ -40,10 +44,11 @@
             left: 0;
             width: 100%;
             height: 100%;
+            /* iOS Fix: Simplified radial gradients */
             background: 
-                -webkit-radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-                -webkit-radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-                -webkit-radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+                -webkit-radial-gradient(20% 80%, circle, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                -webkit-radial-gradient(80% 20%, circle, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                -webkit-radial-gradient(40% 40%, circle, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
             background: 
                 radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
@@ -82,6 +87,7 @@
                 0 20px 40px rgba(0, 0, 0, 0.1),
                 inset 0 1px 0 rgba(255, 255, 255, 0.2);
             min-width: 320px;
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
             transition: all 0.3s ease;
         }
@@ -114,6 +120,7 @@
             font-size: 14px;
             color: white;
             transition: all 0.3s ease;
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
         }
 
@@ -123,6 +130,10 @@
         }
 
         .prize-count {
+            /* iOS Fix: Simplified gradient syntax with fallback */
+            background: #ff6b6b; /* Fallback */
+            background: -webkit-linear-gradient(135deg, #ff6b6b, #ee5a52);
+            background: -moz-linear-gradient(135deg, #ff6b6b, #ee5a52);
             background: linear-gradient(135deg, #ff6b6b, #ee5a52);
             color: white;
             padding: 6px 12px;
@@ -185,6 +196,7 @@
             box-shadow: 
                 0 25px 60px rgba(0, 0, 0, 0.2),
                 inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
             transition: all 0.3s ease;
         }
@@ -196,6 +208,9 @@
             left: -2px;
             right: -2px;
             bottom: -2px;
+            /* iOS Fix: Simplified gradient with fallback */
+            background: #ff6b6b; /* Fallback */
+            background: -webkit-linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #f9ca24, #f0932b, #eb4d4b, #6c5ce7);
             background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #f9ca24, #f0932b, #eb4d4b, #6c5ce7);
             border-radius: 50%;
             z-index: -1;
@@ -247,6 +262,10 @@
             transform: translate(-50%, -50%);
             width: 100px;
             height: 100px;
+            /* iOS Fix: Simplified gradient with fallback */
+            background: #ff6b6b; /* Fallback */
+            background: -webkit-linear-gradient(135deg, #ff6b6b, #ee5a52, #ff8a80);
+            background: -moz-linear-gradient(135deg, #ff6b6b, #ee5a52, #ff8a80);
             background: linear-gradient(135deg, #ff6b6b, #ee5a52, #ff8a80);
             color: white;
             border: 3px solid rgba(255, 255, 255, 0.3);
@@ -267,6 +286,9 @@
             box-shadow: 
                 0 15px 40px rgba(255, 107, 107, 0.6),
                 inset 0 2px 0 rgba(255, 255, 255, 0.3);
+            /* iOS Fix: Hover gradient */
+            background: #ff5252; /* Fallback */
+            background: -webkit-linear-gradient(135deg, #ff5252, #d32f2f, #ff6b6b);
             background: linear-gradient(135deg, #ff5252, #d32f2f, #ff6b6b);
         }
 
@@ -278,6 +300,9 @@
             opacity: 0.6;
             cursor: not-allowed;
             transform: translate(-50%, -50%) scale(1);
+            /* iOS Fix: Disabled state gradient */
+            background: #ccc; /* Fallback */
+            background: -webkit-linear-gradient(135deg, #ccc, #999);
             background: linear-gradient(135deg, #ccc, #999);
             animation: spinning 2s linear infinite;
         }
@@ -300,6 +325,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
             transition: all 0.3s ease;
             min-width: 400px;
@@ -329,6 +355,7 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.8);
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             justify-content: center;
             align-items: center;
@@ -342,6 +369,9 @@
         }
 
         .result-content {
+            /* iOS Fix: Modal gradient with fallback */
+            background: rgba(255, 255, 255, 0.95); /* Fallback */
+            background: -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9));
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9));
             border: 1px solid rgba(255, 255, 255, 0.2);
             padding: 50px;
@@ -352,6 +382,7 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.4);
             max-width: 450px;
             width: 90%;
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
             animation: slideIn 0.5s ease;
         }
@@ -364,9 +395,12 @@
         .result-title {
             font-size: 32px;
             font-weight: 700;
+            /* iOS Fix: Text gradient with fallback */
+            color: #667eea; /* Fallback */
+            background: -webkit-linear-gradient(135deg, #667eea, #764ba2);
             background: linear-gradient(135deg, #667eea, #764ba2);
-            background-clip: text;
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 25px;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -377,6 +411,9 @@
             font-weight: 600;
             margin-bottom: 35px;
             padding: 25px;
+            /* iOS Fix: Background gradient with fallback */
+            background: rgba(102, 126, 234, 0.15); /* Fallback */
+            background: -webkit-linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
             background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
             border: 1px solid rgba(102, 126, 234, 0.2);
             border-radius: 20px;
@@ -385,6 +422,9 @@
         }
 
         .close-button {
+            /* iOS Fix: Button gradient with fallback */
+            background: #667eea; /* Fallback */
+            background: -webkit-linear-gradient(135deg, #667eea, #764ba2);
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             border: none;
@@ -401,6 +441,9 @@
         .close-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+            /* iOS Fix: Hover gradient */
+            background: #5a6fd8; /* Fallback */
+            background: -webkit-linear-gradient(135deg, #5a6fd8, #6a4190);
             background: linear-gradient(135deg, #5a6fd8, #6a4190);
         }
 
