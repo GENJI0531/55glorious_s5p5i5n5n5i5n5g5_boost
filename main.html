@@ -15,8 +15,13 @@
             font-family: "Poppins", sans-serif;
         }
 
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
         body {
-            /* background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); */
+            background: -webkit-linear-gradient(135deg, #cf2626 0%, #FFD700 50%, #FFA500 100%);
             background: linear-gradient(135deg, #cf2626 0%, #FFD700 50%, #FFA500 100%);
             min-height: 100vh;
             display: flex;
@@ -36,11 +41,23 @@
             width: 100%;
             height: 100%;
             background: 
+                -webkit-radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                -webkit-radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                -webkit-radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+            background: 
                 radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
                 radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
             z-index: -1;
+            -webkit-animation: float 20s ease-in-out infinite;
             animation: float 20s ease-in-out infinite;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+        }
+
+        @-webkit-keyframes float {
+            0%, 100% { -webkit-transform: translateY(0px) rotate(0deg); transform: translateY(0px) rotate(0deg); }
+            50% { -webkit-transform: translateY(-20px) rotate(180deg); transform: translateY(-20px) rotate(180deg); }
         }
 
         @keyframes float {
@@ -481,6 +498,14 @@
                 font-size: 13px;
             }
         }
+
+        #physicalWondiv, #totalRemainingdiv {
+            display: none;
+        }
+
+        .prize-count{
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -495,11 +520,11 @@
                     <span>🎯 Total Spins:</span>
                     <span class="stat-value" id="totalSpins">0</span>
                 </div>
-                <div class="stat-item">
+                <div class="stat-item" id="physicalWondiv">
                     <span>🏆 Prizes Won:</span>
                     <span class="stat-value" id="physicalWon">0</span>
                 </div>
-                <div class="stat-item">
+                <div class="stat-item" id="totalRemainingdiv">
                     <span>📦 Remaining:</span>
                     <span class="stat-value" id="totalRemaining">21</span>
                 </div>
