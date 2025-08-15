@@ -606,17 +606,18 @@ const result = document.getElementById("final-value").querySelector("p");
 
 let myChart;
 let currentPrizes = [
-  "Bluetooth Speaker", "Cash Voucher", "Power Bank", "Notebook",
-  "Keychain", "Coffee Voucher", "RM 165 Voucher", "Erhu Strings", "Keep it up! 💪", "Try again! 🚀", "Thanks! 🙏"
+  "Bluetooth Speaker", "Power Bank", "Notebook",
+  "Keychain", "Cong Caphe Buy 1 Free 1", "竹瑞 Cash Voucher", 
+  "Erhu Strings", "Keep it up! 💪", "Try again! 🚀", "Thanks! 🙏"
 ];
 let remaining = {
-    "Bluetooth Speaker": 7,
-    "Cash Voucher": 5,
-    "Power Bank": 2,
-    "Notebook": 2,
-    "Keychain": 2,
-    "Coffee Voucher": 1,
-    "RM 165 Voucher": 1,
+    "Bluetooth Speaker": 6,
+    // "Cash Voucher": 5,
+    "Power Bank": 1,
+    "Notebook": 3,
+    "Keychain": 1,
+    "Cong Caphe Buy 1 Free 1": 10,
+    "竹瑞 Cash Voucher": 5,
     "Erhu Strings": 1,
     "Keep it up! 💪": Infinity,
     "Try again! 🚀": Infinity,
@@ -625,7 +626,7 @@ let remaining = {
 
 let totalSpins = 0;
 let physicalWon = 0;
-let estimatedTotal = 200;
+let estimatedTotal = 293;
 
 let pieColors = [
   "#FF5733", "#33FF57", "#3357FF", "#FF33A1",
