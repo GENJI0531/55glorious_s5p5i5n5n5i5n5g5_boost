@@ -606,9 +606,9 @@ const result = document.getElementById("final-value").querySelector("p");
 
 let myChart;
 let currentPrizes = [
-  "Bluetooth Speaker", "Power Bank", "Notebook",
-  "Keychain", "Cong Caphe Buy 1 Free 1", "竹瑞 Cash Voucher", 
-  "Erhu Strings", "Keep it up! 💪", "Try again! 🚀", "Thanks! 🙏"
+  "Bluetooth Speaker", "Power Bank", "Keep it up! 💪", "Notebook",
+  "Keychain", "Try again! 🚀", "Cong Caphe Buy 1 Free 1", "竹瑞 Cash Voucher", 
+  "Erhu Strings", "Thanks for Coming! 🙏"
 ];
 let remaining = {
     "Bluetooth Speaker": 7,
@@ -621,7 +621,7 @@ let remaining = {
     "Erhu Strings": 1,
     "Keep it up! 💪": Infinity,
     "Try again! 🚀": Infinity,
-    "Thanks! 🙏": Infinity
+    "Thanks for Coming! 🙏": Infinity
 };
 
 let totalSpins = 0;
@@ -642,7 +642,7 @@ currentPrizes.forEach((prize, i) => {
     minDegree: i * segmentAngle,
     maxDegree: (i + 1) * segmentAngle,
     value: prize,
-    type: ["Keep it up! 💪", "Try again! 🚀", "Thanks! 🙏"].includes(prize) ? "encouragement" : "physical"
+    type: ["Keep it up! 💪", "Try again! 🚀", "Thanks for Coming! 🙏"].includes(prize) ? "encouragement" : "physical"
   });
 });
 
@@ -651,7 +651,7 @@ function updateStats() {
     document.getElementById("physicalWon").textContent = physicalWon;
     
     let totalRemaining = Object.entries(remaining)
-        .filter(([prize]) => !["Keep it up! 💪", "Try again! 🚀", "Thanks! 🙏"].includes(prize))
+        .filter(([prize]) => !["Keep it up! 💪", "Try again! 🚀", "Thanks for Coming! 🙏"].includes(prize))
         .reduce((sum, [, count]) => sum + count, 0);
     document.getElementById("totalRemaining").textContent = totalRemaining;
 }
@@ -661,7 +661,7 @@ function updatePrizeList() {
     prizeList.innerHTML = "";
     
     Object.entries(remaining).forEach(([prize, count]) => {
-        if (!["Keep it up! 💪", "Try again! 🚀", "Thanks! 🙏"].includes(prize)) {
+        if (!["Keep it up! 💪", "Try again! 🚀", "Thanks for Coming! 🙏"].includes(prize)) {
             const item = document.createElement("div");
             item.className = "prize-item";
             item.innerHTML = `
@@ -715,13 +715,13 @@ function setupWheel() {
 
 function randomPrize() {
   let physicalPrizes = Object.entries(remaining)
-    .filter(([p, count]) => count > 0 && !["Keep it up! 💪", "Try again! 🚀", "Thanks! 🙏"].includes(p));
+    .filter(([p, count]) => count > 0 && !["Keep it up! 💪", "Try again! 🚀", "Thanks for Coming! 🙏"].includes(p));
 
   let remainingDraws = Math.max(estimatedTotal - totalSpins, 1);
 
   if (physicalPrizes.length === 0) {
     // No physical prizes left — always encouragement
-    let encouragementPrizes = ["Keep it up! 💪", "Try again! 🚀", "Thanks! 🙏"];
+    let encouragementPrizes = ["Keep it up! 💪", "Try again! 🚀", "Thanks for Coming! 🙏"];
     return { prize: encouragementPrizes[Math.floor(Math.random() * encouragementPrizes.length)], type: "encouragement" };
   }
 
@@ -745,7 +745,7 @@ function randomPrize() {
   }
 
   // Encouragement
-  let encouragementPrizes = ["Keep it up! 💪", "Try again! 🚀", "Thanks! 🙏"];
+  let encouragementPrizes = ["Keep it up! 💪", "Try again! 🚀", "Thanks for Coming! 🙏"];
   return { prize: encouragementPrizes[Math.floor(Math.random() * encouragementPrizes.length)], type: "encouragement" };
 }
 
